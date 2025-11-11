@@ -1,0 +1,294 @@
+---
+// src/pages/index.astro
+
+// Importamos la plantilla principal y las herramientas de Backend
+import Layout from '../layouts/Layout.astro';
+import { generateCSRFToken } from './api/contact'; 
+import crypto from 'crypto'; 
+
+import { generateCSRFToken } from '../lib/security'; 
+
+// --- Generación del Token CSRF (SSR) ---
+const csrfToken = generateCSRFToken();
+
+const PAGE_TITLE = "Arquitecta Lyra Vance | Convergencia BIM, Estructuras y Python";
+
+---
+
+<Layout 
+  title={PAGE_TITLE} 
+  description="Domina el diseño paramétrico, la programación algorítmica y las estructuras sismorresistentes con la Arquitecta de la Convergencia. LCP rápido y seguridad A+."
+>
+  <main>
+    <article>
+      <header>
+        <div class="header-flex-container"> 
+          <div class="tutor-image-container-small">
+            <img 
+              src="/Arquitecta-Lyra-Vance.jpg" 
+              alt="Retrato profesional de la Arquitecta Lyra Vance"
+              loading="eager"
+              width="100" 
+              height="100"
+              srcset="/Arquitecta-Lyra-Vance.jpg 150w, /Arquitecta-Lyra-Vance.jpg 300w"
+              sizes="100px" 
+            >
+          </div>
+          
+          <hgroup class="inline-hgroup"> 
+            <h1>Arquitecta Lyra Vance</h1>
+            <p class="professor-tag">LA ARQUITECTA DE LA CONVERGENCIA</p>
+          </hgroup>
+        </div>
+        <p>Lyra Vance es una destacada Arquitecta Estructural y Consultora BIM reconocida por su 
+          enfoque pionero en la convergencia de diseño estructural y programación algorítmica. 
+          Especializada en la optimización de estructuras complejas y la implementación de flujos 
+          de trabajo eficientes de Modelado de Información de Construcción (BIM).
+</p>
+<p>
+Su trabajo se centra en ofrecer consultoría experta para empresas que buscan integrar la automatización y 
+el diseño generativo en proyectos de gran escala, desde rascacielos hasta puentes de infraestructura crítica.          de trabajo eficientes de Modelado de Información de Construcción (BIM).
+</p>
+
+        <p>Con experiencia en grandes firmas de ingeniería y un Máster en Diseño Computacional, 
+        su enfoque es fusionar la Arquitectura (BIM) con la Ingeniería (Estructuras) y el Código (Python). 
+      Te enseña a diseñar con datos y no solo con intuición.</p>
+    
+      </header>
+      
+      <hr />
+      
+      <h2>Módulos Clave: De la Estructura al Código</h2>
+      <ul>
+        <li>Modelado BIM Avanzado: Flujos de trabajo Cloud-based y gestión de clash detection.</li>
+        <li>Estructuras Sismorresistentes: Análisis de cargas dinámicas y principios de diseño seguro.</li>
+        <li>Programación Algorítmica (Python): Automatización de planos y generación de geometrías complejas.</li>
+        <li>Diseño Paramétrico con Rhino/Grasshopper: Creación de fachadas adaptativas y optimización de
+        materiales.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Solicita una Consultoría</h2>
+      <form id="contact-form" action="/api/contact" method="POST">
+
+        <input type="hidden" name="csrf_token" value={csrfToken} />
+        {/* Usabilidad y Seguridad: Máxima longitud para evitar abuso (Rate Limiting en el servidor) */}
+        <label for="nombre">Nombre Completo (Máx. 50 caracteres)</label>
+        <input type="text" id="nombre" name="nombre" required maxlength="50" placeholder="Ej. Antonio Gaudí" />
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required placeholder="tu@email.com" />
+
+        <label for="asunto">Asunto (Máx. 100 caracteres)</label>
+        <input type="text" id="asunto" name="asunto" required maxlength="100" placeholder="Consulta sobre BIM 5D" />
+
+        <label for="mensaje">Mensaje (Máx. 500 caracteres)</label>
+        <textarea id="mensaje" name="mensaje" required maxlength="500" rows="5"></textarea>
+
+        <button type="submit">Enviar Solicitud</button>
+
+        <div 
+        id="form-message" 
+        role="alert" 
+        style="display: none; margin-top: 1rem;">
+        </div>
+
+      </form>
+      </article>
+<footer class="container">
+    <hr>
+    <div class="grid">
+        <section>
+            <h3>Navegación</h3>
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Servicios</a></li>
+                <li><a href="#">Acerca de Lyra Vance</a></li>
+                <li><a href="#">Contacto</a></li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Especialidades</h3>
+            <ul>
+                <li>Modelado Estructural BIM</li>
+                <li>Optimización Algorítmica (Python)</li>
+                <li>Análisis de Riesgos Sísmicos</li>
+                <li>Consultoría en Código Limpio</li>
+                <li>Diseño de Puentes y Cimentaciones</li>
+            </ul>
+        </section>
+
+        <section>
+            <h3>Información Legal</h3>
+            <p>
+                <strong>Email:</strong> contacto@lyravance.com<br>
+                <strong>Teléfono:</strong> +51 987 654 321<br>
+            </p>
+            <small>
+                <a href="#">Política de Privacidad</a> | 
+                <a href="#">Términos de Servicio</a>
+            </small>
+        </section>
+    </div>
+
+    <hr>
+
+    <div style="text-align: center; padding-top: 0.5rem;">
+        <small>
+            © {new Date().getFullYear()} Lyra Vance - LA ARQUITECTA DE LA CONVERGENCIA. 
+            Todos los derechos reservados.
+        </small>  
+    </div>
+</footer>
+
+  </main>
+</Layout>
+
+<style>
+
+/* 1. Contenedor principal: Imagen + Títulos alineados */
+.header-flex-container {
+    display: flex;
+    align-items: center; 
+    gap: 1rem; 
+    margin-bottom: 1rem;
+    padding-left: 1rem;
+}
+
+/* 2. HGROUP: Hace que el H1 y el P estén en línea */
+.inline-hgroup {
+    display: flex; 
+    align-items: baseline; 
+    gap: 1rem; 
+    margin: 0;
+}
+
+.inline-hgroup h1 {
+    margin: 0; 
+}
+
+/* Estilo para la profesión al lado del h1 */
+.inline-hgroup .professor-tag {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--pico-secondary); 
+    opacity: 0.8;
+    margin: 0;
+}
+
+
+/* 3. IMAGEN: Tamaño pequeño y circular */
+.tutor-image-container-small {
+    min-width: 100px; 
+    height: 100px;
+}
+
+.tutor-image-container-small img {
+    display: block;
+    width: 100%; 
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--pico-primary); 
+}
+
+/* Asumiendo que el footer tiene un fondo personalizado claro */
+footer {
+    background-color: var(--pico-primary-background-200); /* Fondo claro de ejemplo */
+    /* Asegura que el texto sea oscuro, no gris pálido */
+    color: var(--pico-primary-700); 
+}
+
+/* O usa la variable de texto principal para máximo contraste */
+.low-contrast-element {
+    color: var(--pico-text-color); 
+    background-color: var(--pico-background-color); 
+}
+
+/* 4. Comportamiento en MÓVIL (Todo debe apilarse) */
+@media (max-width: 768px) {
+    .header-flex-container {
+        padding-left: 0;
+        flex-direction: column; 
+        text-align: center;
+    }
+    
+    .inline-hgroup {
+        flex-direction: column; 
+        align-items: center;
+        gap: 0.2rem;
+    }
+}
+
+
+</style>
+<script is:inline>
+
+    // Wait until the entire page is loaded
+    window.onload = function() {
+        // 1. Obtener las referencias del DOM
+        const form = document.getElementById('contact-form');
+        const messageContainer = document.getElementById('form-message');
+        
+        // Verificación para evitar el TypeError
+        if (!form || !messageContainer) {
+            console.error("Formulario de contacto no encontrado.");
+            return; 
+        }
+        
+        const submitButton = form.querySelector('button[type="submit"]');
+
+        // Estilos iniciales
+        messageContainer.style.padding = '1rem';
+        messageContainer.style.borderRadius = 'var(--border-radius)';
+        messageContainer.style.fontWeight = 'bold';
+        messageContainer.style.display = 'none';
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault(); // Detiene la navegación 
+
+            // Preparar UI
+            messageContainer.style.display = 'none';
+            messageContainer.textContent = 'Enviando...';
+            if (submitButton) submitButton.disabled = true;
+
+            const formData = new FormData(form);
+            
+            try {
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    body: formData,
+                });
+
+                const result = await response.json();
+
+                // Manejo de la respuesta
+                if (response.ok) {
+                    messageContainer.textContent = result.message || "Mensaje enviado con éxito. ¡Gracias!";
+                    messageContainer.style.backgroundColor = 'var(--pico-success-background)';
+                    messageContainer.style.color = 'var(--pico-success-color)';
+                    messageContainer.style.border = '1px solid var(--pico-success-border)';
+                    form.reset(); 
+                } else {
+                    messageContainer.textContent = result.message || "Error: No se pudo enviar el mensaje.";
+                    messageContainer.style.backgroundColor = 'var(--pico-danger-background)';
+                    messageContainer.style.color = 'var(--pico-danger-color)';
+                    messageContainer.style.border = '1px solid var(--pico-danger-border)';
+                }
+            } catch (error) {
+                console.error("Fetch error:", error);
+                messageContainer.textContent = "Error de conexión de red.";
+                messageContainer.style.backgroundColor = 'var(--pico-danger-background)';
+                messageContainer.style.color = 'var(--pico-danger-color)';
+                messageContainer.style.border = '1px solid var(--pico-danger-border)';
+            } finally {
+                // Muestra el mensaje y habilita el botón
+                messageContainer.style.display = 'block';
+                if (submitButton) submitButton.disabled = false;
+            }
+        });
+    }; // Fin de window.onload
+</script>

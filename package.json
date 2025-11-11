@@ -1,0 +1,29 @@
+{
+  "name": "arquitecta-app",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "seed": "tsx seed-posts.ts"
+  },
+  "dependencies": {
+    "@astrojs/node": "^9.5.0",
+    "@picocss/pico": "^2.1.1",
+    "@types/sqlite3": "^3.1.11",
+    "astro": "^5.15.5",
+    "dompurify": "^3.3.0",
+    "jsdom": "^27.1.0",
+    "sqlite": "^5.1.1",
+    "sqlite3": "^5.1.7",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/dompurify": "^3.0.5",
+    "@types/node": "^24.10.0",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6"
+  }
+}
