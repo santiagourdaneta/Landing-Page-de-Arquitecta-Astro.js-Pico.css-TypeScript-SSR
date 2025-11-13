@@ -13,7 +13,7 @@
     "@astrojs/node": "^9.5.0",
     "@picocss/pico": "^2.1.1",
     "@types/sqlite3": "^3.1.11",
-    "astro": "^5.15.5",
+    "astro": "^5.15.6",
     "dompurify": "^3.3.0",
     "jsdom": "^27.1.0",
     "sqlite": "^5.1.1",
